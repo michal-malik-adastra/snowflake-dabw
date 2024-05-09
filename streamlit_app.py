@@ -3,9 +3,6 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
-
 st.title(":cup_with_straw Customize Your Smoothie :cup_with_straw:")
 st.write("Choose the fruits you want in your custom Smoothie")
 
@@ -26,3 +23,6 @@ values ('{ingredients_string}', '{name_on_order}')"""
     if submit_order_button:
         session.sql(insert_stmt).collect()
         st.success(f"Your Smoothie is ordered, {name_on_order}")
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
